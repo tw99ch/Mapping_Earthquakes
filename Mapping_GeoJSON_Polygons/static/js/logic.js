@@ -99,6 +99,7 @@ let airportData = "https://raw.githubusercontent.com/tw99ch/Mapping_Earthquakes/
 d3.json(airportData).then(function(data) {
   // console.log(data);
   
+
 // Creating a GeoJSON layer with the retrieved data.
 L.geoJson(data, {
   onEachFeature: function(features, data) {
