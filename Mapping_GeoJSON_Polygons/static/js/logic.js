@@ -81,13 +81,13 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 // Create a base layer that holds both maps.
 let baseMaps = {
   Street: streets,
-  SatelliteStreets: satelliteStreets
+  "Satellite Streets": satelliteStreets
 };
 // Create the map object with a center and zoom level.
 let map = L.map('mapid', {
   center: [43.7, -79.3],
   zoom: 11,
-  layers: [satelliteStreets]
+  layers: [streets]
 });
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
@@ -97,11 +97,41 @@ L.control.layers(baseMaps).addTo(map);
 // Accessing the Toronto neighborhoods GeoJSON URL.
 let torontoHoods = "https://raw.githubusercontent.com/tw99ch/Mapping_Earthquakes/main/torontoNeighborhoods.json";
 
+
+let myStyle = {
+  fillColor: "#ffffa1",
+  weight: 1,
+  color: "blue"
+  }
+
 // Grabbing our GeoJSON data.
 d3.json(torontoHoods).then(function(data) {
   console.log(data);
+
   
 
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJson(data).addTo(map);
+L.geoJson(data, {
+  style: myStyle,
+  onEachFeature: function(features, data) {
+  data.bindPopup("<h3> Neighborhood: " + features.properties.AREA_NAME + "</h3>")
+}}).addTo(map);
 });
+
+// let myStyle = {
+//   color: "#ffffa1",
+//   weight: 1
+// }
+
+// // Grabbing our GeoJSON data.
+// d3.json(torontoData).then(function(data) {
+//   console.log(data);
+// // Creating a GeoJSON layer with the retrieved data.
+// L.geoJson(data, {
+//   style: myStyle,
+//   onEachFeature: function(features, data) {
+//   data.bindPopup("<h3> Airline: " + features.properties.airline + "</h3><hr><h3> Destination: " + features.properties.dst + "</h3>")
+  
+  
+// }}).addTo(map);
+// });
