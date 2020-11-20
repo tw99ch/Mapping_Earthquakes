@@ -41,25 +41,25 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geoj
 });
 
 
-let myStyle = {
-  fillColor: "#ffffa1",
-  weight: 1,
-  color: "blue"
-  }
+// let myStyle = {
+//   fillColor: "#ffffa1",
+//   weight: 1,
+//   color: "blue"
+//   }
 
-// Grabbing our GeoJSON data.
-d3.json(torontoHoods).then(function(data) {
-  console.log(data);
+// // Grabbing our GeoJSON data.
+// d3.json(torontoHoods).then(function(data) {
+//   console.log(data);
 
   
 
 // Creating a GeoJSON layer with the retrieved data.
-L.geoJson(data, {
-  style: myStyle,
-  onEachFeature: function(features, data) {
-  data.bindPopup("<h3> Neighborhood: " + features.properties.AREA_NAME + "</h3>")
-}}).addTo(map);
-});
+// L.geoJson(data, {
+//   style: myStyle,
+//   onEachFeature: function(features, data) {
+//   data.bindPopup("<h3> Neighborhood: " + features.properties.AREA_NAME + "</h3>")
+// }}).addTo(map);
+// });
 
 // let myStyle = {
 //   color: "#ffffa1",
